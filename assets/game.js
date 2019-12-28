@@ -1,5 +1,6 @@
-var word = ["madonna", "coffee", "soccer", "godzilla", "batman", "pokemon", "sacramento"];
+var word = ["madonna", "coffee", "tigers", "godzilla", "batman", "pokemon", "sacramento"];
 var sportWord = ["basketball", "helment", "goal", "cleats", "jersey", "headband", "football"];
+var foodWord = ["bannana", "tofu", "chesse", "pizza", "chocolate", "lemon", ""];
 var selectedWord = "";
 var lettersInWord = [];
 var numBlanks = 0;
@@ -75,6 +76,38 @@ function startGameSport() {
     console.log(numBlanks);
     console.log(blanksAndSuccess)
 };
+// ---------------------------------------------------------------------------
+function startGameFood() {
+    // SELECT A RANDOM WORD FROM THE ARRAY
+    selectedWord = foodWord[Math.floor(Math.random() * foodWord.length)];
+    // breaks the word into individual letters into arrays
+    lettersInWord = selectedWord.split("");
+    numBlanks = lettersInWord.length;
+
+    // RESETS THE GAME FROM EACH ROUND
+    guessesLeft = 9;
+    blanksAndSuccess = [];
+    wrongLetters = [];
+
+    // FORLOOP TO POPULATE THE BLANKS AND SUCCESS
+    for (var i = 0; i < numBlanks; i++) {
+        blanksAndSuccess.push("_");
+    };
+
+    // APPENDS THE INFO ONTO THE HTML
+    // .JOIN -- joins the array together with space between them
+    $("#theWord").text(blanksAndSuccess.join(" "));
+    $("#wrong-guesses").text(wrongLetters.join(" "));
+    $("#remainingGuess").text(guessesLeft);
+    $("#wins").text(winCount);
+    document.querySelector("#loss").innerHTML = lossCount;
+
+    // TESTING/ DEBUGGING
+    console.log("word: " + selectedWord);
+    console.log(lettersInWord);
+    console.log(numBlanks);
+    console.log(blanksAndSuccess)
+};
 
 
 // ---------------------------------------------------------------------------
@@ -113,14 +146,15 @@ function roundComplete() {
     $("#wrong-guesses").text(wrongLetters.join(" "));
     $("#remainingGuess").text(guessesLeft);
 
-    // CHECK ID USER WON
+    // CHECK IF USER WON
     if (lettersInWord.toString() === blanksAndSuccess.toString()) {
         winCount++;
         alert('you won');
-        
+
         document.querySelector("#wins").innerHTML = winCount;
         // calling startgame function to start the game again once user won
         // startGame();
+        // startGameSport();
     }
     // CHECK IF USER LOSS
     else if (guessesLeft === 0) {
@@ -129,6 +163,7 @@ function roundComplete() {
         document.querySelector("#loss").innerHTML = lossCount;
         // calling startgame function here once user loss
         // startGame();
+        // startGameSport();
     }
 
 }
@@ -147,9 +182,15 @@ document.onkeypress = function (event) {
     // console.log(letterGuessed)
 };
 
-$("#sports").on('click', function() {
+$("#sports").on('click', function () {
+    document.querySelector("#category").innerHTML = 'Sports';
     startGameSport();
-})
-$("#random").on('click', function() {
+});
+$("#random").on('click', function () {
+    document.querySelector("#category").innerHTML = 'Random';
     startGame();
-})
+});
+$("#food").on('click', function () {
+    document.querySelector("#category").innerHTML = 'Food';
+    startGameFood();
+});

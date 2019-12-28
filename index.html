@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,66 +10,73 @@
     <!-- BOOTSTRAP LINK  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- LOCAL CSS LINK -->
+    <!-- LOCAL CSS LINK -->
     <link rel="stylesheet" href="/assets/style.css">
 
     <title>Word Guessing Game</title>
 </head>
 
 <body>
-<div class='container'>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Word Guessing Game</h1>
-            <p class="lead"> Press a letter key to guess a letter in the word.
-                You have 9 guesses. Good luck.
-            </p>
+    <div class='container'>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Word Guessing Game</h1>
+                <p class="lead"> Choose a catergory and guess the random word. Press a letter key to guess a letter in
+                    the word.
+                    You have 9 guesses. If you succeed, choose a category to guess another word. Good luck.
+                </p>
+            </div>
+        </div>
+        <div>
+            <p>Choose a category</p>
+            <button id='sports'> Sports</button>
+            <button id='random'> Random</button>
+            <button id='food'> Food</button>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p> Category: <span id='category'> </span></p>
+                <p>
+                    Guess the Word:
+                    <h2 class='d-flex justify-content-center'>
+                        <span id='theWord'></span>
+                    </h2>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p> Wrong Guesses: <span id="wrong-guesses"></span>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p>
+                    Guesses Remaining: <span id='remainingGuess'></span>
+                </p>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='row'>
+                <div class="card col-md-6">
+                    <div class="card-body d-flex">
+                        <p>
+                            Wins: <span id="wins"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card col-md-6">
+                    <div class="card-body">
+                        <p>
+                            Losses: <span id="loss"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div>
-        <p>Choose a category</p>
-        <button id='sports'> Sports</button>
-        <button id='random'> Random</button>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <p>
-                Guess the Word: 
-                <h2 class= 'd-flex justify-content-center'> 
-                    <span id='theWord'></span>
-                </h2> 
-            </p>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-body">
-            <p> Wrong Guesses: <span id="wrong-guesses"></span>
-            </p>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-body">
-            <p>
-                Guesses Remaining: <span id='remainingGuess'></span>
-            </p>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-body">
-            <p>
-                Wins: <span id="wins"></span>
-            </p>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-body">
-            <p>
-                Losses: <span id="loss"></span>
-            </p>
-        </div>
-        </div>
-    </div>
-    
+    <br>
 </body>
 <script src="assets/game.js"></script>
 
