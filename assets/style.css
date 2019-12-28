@@ -1,0 +1,13 @@
+
+#remainingGuess{
+    color: blue;
+}
+#wrong-guesses{
+    color: red;
+}
+#loss{
+    color: red;
+}
+#wins{
+    color: green;
+}
