@@ -1,4 +1,5 @@
 var word = ["madonna", "coffee", "soccer", "godzilla", "batman", "pokemon", "sacramento"];
+var sportWord = ["basketball", "helment", "goal", "cleats", "jersey", "headband", "football"];
 var selectedWord = "";
 var lettersInWord = [];
 var numBlanks = 0;
@@ -41,7 +42,40 @@ function startGame() {
     console.log(numBlanks);
     console.log(blanksAndSuccess)
 };
-startGame();
+// startGame();
+// ---------------------------------------------------------------------------
+function startGameSport() {
+    // SELECT A RANDOM WORD FROM THE ARRAY
+    selectedWord = sportWord[Math.floor(Math.random() * sportWord.length)];
+    // breaks the word into individual letters into arrays
+    lettersInWord = selectedWord.split("");
+    numBlanks = lettersInWord.length;
+
+    // RESETS THE GAME FROM EACH ROUND
+    guessesLeft = 9;
+    blanksAndSuccess = [];
+    wrongLetters = [];
+
+    // FORLOOP TO POPULATE THE BLANKS AND SUCCESS
+    for (var i = 0; i < numBlanks; i++) {
+        blanksAndSuccess.push("_");
+    };
+
+    // APPENDS THE INFO ONTO THE HTML
+    // .JOIN -- joins the array together with space between them
+    $("#theWord").text(blanksAndSuccess.join(" "));
+    $("#wrong-guesses").text(wrongLetters.join(" "));
+    $("#remainingGuess").text(guessesLeft);
+    $("#wins").text(winCount);
+    document.querySelector("#loss").innerHTML = lossCount;
+
+    // TESTING/ DEBUGGING
+    console.log("word: " + selectedWord);
+    console.log(lettersInWord);
+    console.log(numBlanks);
+    console.log(blanksAndSuccess)
+};
+
 
 // ---------------------------------------------------------------------------
 // CHECKS THE SELECTED LETTER BY THE USER
@@ -86,7 +120,7 @@ function roundComplete() {
         
         document.querySelector("#wins").innerHTML = winCount;
         // calling startgame function to start the game again once user won
-        startGame();
+        // startGame();
     }
     // CHECK IF USER LOSS
     else if (guessesLeft === 0) {
@@ -94,7 +128,7 @@ function roundComplete() {
         alert('you lost')
         document.querySelector("#loss").innerHTML = lossCount;
         // calling startgame function here once user loss
-        startGame();
+        // startGame();
     }
 
 }
@@ -111,4 +145,11 @@ document.onkeypress = function (event) {
 
     // TESTING/ DEBUGGING
     // console.log(letterGuessed)
-}
+};
+
+$("#sports").on('click', function() {
+    startGameSport();
+})
+$("#random").on('click', function() {
+    startGame();
+})
